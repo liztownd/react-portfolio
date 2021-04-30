@@ -3,7 +3,7 @@ import Skills from '../components/Skills';
 
 function About(){
     return (
-        <div className="container-lg mx-auto mb-5 overflow-auto">
+        <div className="container-lg mx-auto my-5 overflow-auto">
         <AboutMe/>
         <Skills/>
         </div>

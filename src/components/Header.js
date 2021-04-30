@@ -36,7 +36,7 @@ function Header() {
                                 <li className="nav-item justify-content-end ">
                                     <Link to="/contact"
                                         className={location.pathname === "/contact" ? "nav-link active" : "nav-link"}>
-                                        About
+                                        Contact
                                 </Link>
                                 </li>
                             </ul>
