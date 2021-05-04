@@ -112,44 +112,58 @@ function Projects() {
             deployUrl: 'https://liztownd.github.io/day-planner/',
         },
     ]
-   
 
 
-    function handleOnClick(e){
+
+    function handleOnClick(e) {
         e.preventDefault();
         console.log('click');
-        shuffleProj();
+        setProjects(shuffleProj().slice(0, 6))
     };
 
-    function shuffleProj(){
+    function shuffleProj() {
+
         let shuffledProj = [...allProj]
-        for (let i = shuffleProj.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffledProj[i], shuffledProj[j]] = [shuffledProj[j], shuffledProj[i]];
+
+        let counter = shuffledProj.length;
+
+        // While there are elements in the array
+        while (counter > 0) {
+            // Pick a random index
+            let index = Math.floor(Math.random() * counter);
+
+            // Decrease counter by 1
+            counter--;
+
+            // And swap the last element with it
+            let temp = shuffledProj[counter];
+            shuffledProj[counter] = shuffledProj[index];
+            shuffledProj[index] = temp;
         }
-        //console.log(shuffledProj);
-        setProjects(shuffledProj.slice(0, 6))
+
+        return shuffledProj;
+
     }
 
     return (
         <main className="container-lg mx-auto mt-1 mb-5">
             <div className="container mx-auto p-3 my-3">
                 <div className="d-flex justify-content-between m-4">
-                <h2 className="text-light ">Portfolio</h2>
-                <button className="btn btn-sm btn-light" onClick={handleOnClick}>Shuffle Projects</button>
+                    <h2 className="text-light ">Portfolio</h2>
+                    <button className="btn btn-sm btn-light" onClick={handleOnClick}>Shuffle Projects</button>
                 </div>
                 <div className="row mx-auto">
-                {projects.map((p) =>
-                    <ProjectCard
-                        key={p.title}
-                        title={p.title}
-                        description={p.description}
-                        image={p.image}
-                        gitUrl={p.gitUrl}
-                        deployUrl={p.deployUrl}
-                    />
-                    
-                )}
+                    {projects.map((p) =>
+                        <ProjectCard
+                            key={p.title}
+                            title={p.title}
+                            description={p.description}
+                            image={p.image}
+                            gitUrl={p.gitUrl}
+                            deployUrl={p.deployUrl}
+                        />
+
+                    )}
                 </div>
             </div>
         </main>
